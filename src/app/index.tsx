@@ -1,98 +1,117 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React from 'react';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { Video, ResizeMode } from 'expo-av';
+import { Ionicons } from '@expo/vector-icons';
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+const { width, height } = Dimensions.get('window');
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+// رابط فيديو تجريبي
+const videoSource = { uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' };
+
+export default function VideoScreen() {
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+    <View style={styles.container}>
+      {/* مشغل الفيديو من expo-av */}
+      <Video
+        style={styles.video}
+        source={videoSource}
+        shouldPlay
+        isLooping
+        resizeMode={ResizeMode.COVER}
+        useNativeControls={false}
+      />
 
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+      {/* العناصر التفاعلية فوق الفيديو */}
+      <View style={styles.overlay}>
+        {/* الأزرار الجانبية */}
+        <View style={styles.rightSidebar}>
+          <TouchableOpacity style={styles.iconButton}>
+            <Ionicons name="heart" size={35} color="white" />
+            <Text style={styles.iconText}>1.2K</Text>
+          </TouchableOpacity>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+          <TouchableOpacity style={styles.iconButton}>
+            <Ionicons name="chatbubble-ellipses" size={33} color="white" />
+            <Text style={styles.iconText}>452</Text>
+          </TouchableOpacity>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+          <TouchableOpacity style={styles.iconButton}>
+            <Ionicons name="share-social" size={33} color="white" />
+            <Text style={styles.iconText}>مشاركة</Text>
+          </TouchableOpacity>
+        </View>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+        {/* معلومات المقطع والحساب */}
+        <View style={styles.bottomSection}>
+          <Text style={styles.username}>@tiktom_official</Text>
+          <Text style={styles.description}>
+            تطوير تطبيق تكتوم (Tiktom) 🚀 | منصة الفيديوهات القصيرة وتجربة المحتوى
+          </Text>
+          <View style={styles.musicRow}>
+            <Ionicons name="musical-notes" size={16} color="white" />
+            <Text style={styles.musicText}>الصوت الأصلي - تطبيق تكتوم</Text>
+          </View>
+        </View>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#000',
+  },
+  video: {
+    width: width,
+    height: height,
+    position: 'absolute',
+  },
+  overlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    paddingBottom: 20,
+    paddingHorizontal: 15,
+  },
+  rightSidebar: {
+    position: 'absolute',
+    right: 15,
+    bottom: 100,
+    alignItems: 'center',
+  },
+  iconButton: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  iconText: {
+    color: '#fff',
+    fontSize: 12,
+    marginTop: 4,
+    fontWeight: '600',
+  },
+  bottomSection: {
+    width: '80%',
+    marginBottom: 10,
+  },
+  username: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 6,
+  },
+  description: {
+    color: '#fff',
+    fontSize: 14,
+    marginBottom: 8,
+    lineHeight: 20,
+  },
+  musicRow: {
     flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
     alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+  musicText: {
+    color: '#fff',
+    fontSize: 13,
+    marginLeft: 6,
   },
 });
