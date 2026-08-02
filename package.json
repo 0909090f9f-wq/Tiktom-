@@ -43,5 +43,12 @@
     "web": "expo start --web",
     "lint": "expo lint"
   },
-  "private": true
+  "private": true,
+  "eas": {
+    "build": {
+      "experimental": {
+        "npmEngine": "npm"
+      }
+    }
+  }
 }
