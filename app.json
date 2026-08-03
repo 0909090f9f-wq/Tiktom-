@@ -1,48 +1,38 @@
 {
   "expo": {
-    "name": "Taktom",
+    "name": "taktom",
     "slug": "taktom",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "taktom",
-    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
     "android": {
-      "package": "com.faten18517.taktom",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
       },
-      "permissions": [
-        "CAMERA",
-        "RECORD_AUDIO",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
-      ]
+      "package": "com.faten18517.taktom"
     },
     "web": {
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-av",
       [
         "expo-build-properties",
         {
           "android": {
-            "gradleVersion": "8.8",
-            "compileSdkVersion": 34,
-            "targetSdkVersion": 34,
-            "buildToolsVersion": "34.0.0"
+            "gradleVersion": "8.8"
           }
         }
       ]
-    ],
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "fd42893c-bde3-441c-ac20-0106a2a9b3bc"
-      }
-    },
-    "sdkVersion": "51.0.0"
+    ]
   }
 }
