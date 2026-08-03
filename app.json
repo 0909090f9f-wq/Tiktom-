@@ -4,17 +4,12 @@
     "slug": "taktom",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "package": "com.faten18517.taktom"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "fd42893c-bde3-441c-ac20-0106a2a9b3bc"
-      }
     }
   }
 }
