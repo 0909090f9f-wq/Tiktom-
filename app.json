@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "taktom",
+    "slug": "taktom",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.faten18517.taktom"
+    }
+  }
+}
