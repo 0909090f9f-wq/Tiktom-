@@ -24,7 +24,15 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-av"
+      "expo-av",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "gradleVersion": "8.8"
+          }
+        }
+      ]
     ],
     "extra": {
       "router": {},
