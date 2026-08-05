@@ -1,24 +1,29 @@
 {
   "expo": {
-    "name": "taktom",
+    "name": "Tiktom",
     "slug": "taktom",
     "version": "1.0.0",
+    "scheme": "tiktom",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "package": "com.faten18517.taktom"
+      "package": "com.tiktom.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "fd42893c-bde3-441c-ac20-0106a2a9b3bc"
+        "projectId": "872048d1-167c-4af6-ad18-ceedc7ca1f13"
       }
     },
-    "plugins": [
-      "expo-font",
-      "expo-router"
-    ]
+    "owner": "fatenhetlar"
   }
 }
