@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Tiktom",
+    "slug": "tiktom-ufn4x1ef7awrwwewssubr",
+    "version": "1.0.0",
+    "scheme": "tiktom",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tiktom.app"
+    },
+    "android": {
+      "package": "com.taiba.tiktomapp",
+      "jsEngine": "jsc"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {}
+    },
+    "owner": "bshaer2",
+    "plugins": [
+      "expo-asset",
+      "expo-font",
+      "expo-router",
+      "expo-video",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0",
+            "minSdkVersion": 24,
+            "enableMinifyInReleaseBuilds": false
+          }
+        }
+      ]
+    ],
+    "experiments": {},
+    "jsEngine": "jsc",
+  }
+}
