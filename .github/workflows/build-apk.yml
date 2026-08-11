@@ -23,6 +23,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Install Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.8'
+
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
@@ -35,10 +40,9 @@ jobs:
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug --continue --stacktrace
+          gradle assembleDebug --stacktrace
 
       - name: Upload APK Artifact
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Tiktom-Debug-APK
