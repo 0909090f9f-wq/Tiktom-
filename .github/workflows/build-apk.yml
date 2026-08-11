@@ -1,16 +1,18 @@
 name: Build Android APK
 
 on:
+  push:
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -18,23 +20,23 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
           distribution: 'temurin'
+          java-version: '17'
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Expo Prebuild
+      - name: Generate Native Android Code
         run: npx expo prebuild --platform android --clean
 
-      - name: Build Android Release APK
+      - name: Build Debug APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Tiktom-App-APK
-          path: android/app/build/outputs/apk/release/*.apk
+          name: Tiktom-Debug-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
