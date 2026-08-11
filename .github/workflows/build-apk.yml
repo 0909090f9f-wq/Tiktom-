@@ -26,17 +26,19 @@ jobs:
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Generate Native Android Code
-        run: npx expo prebuild --platform android --clean
+      - name: Clean & Prebuild
+        run: |
+          rm -rf android ios
+          npx expo prebuild --platform android --clean
 
-      - name: Clean & Build Debug APK
+      - name: Build Debug APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew clean
-          ./gradlew assembleDebug --no-daemon --stacktrace
+          ./gradlew assembleDebug --continue --stacktrace
 
       - name: Upload APK Artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Tiktom-Debug-APK
