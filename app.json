@@ -22,9 +22,11 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "eas": {}
+      "eas": {
+        "projectId": "51ea4619-b757-4d1a-af7b-c746f65dd3af"
+      },
+      "router": {}
     },
-    "owner": "bshaer2",
     "plugins": [
       "expo-asset",
       "expo-font",
@@ -45,5 +47,6 @@
     ],
     "experiments": {},
     "jsEngine": "jsc",
+    "owner": "alrawy"
   }
 }
